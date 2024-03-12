@@ -1,0 +1,20 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20rem;
+  text-align: center;
+}
+
+.layout h2 {
+  font-size: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 1.5rem;
+}

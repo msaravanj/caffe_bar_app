@@ -1,0 +1,56 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  border-style: groove;
+  border-radius: 0.5rem;
+  justify-content: center;
+  width: 30%;
+  margin: auto;
+  padding: 3rem;
+  margin-top: 20vh;
+}
+
+.box h2 {
+  margin-top: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.loginBtn {
+  margin-top: 2rem;
+}
+
+.link1 {
+  text-decoration: none;
+}
+
+.link2 {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 78em) {
+  .box {
+    width: 50%;
+  }
+}
+
+@media (max-width: 47em) {
+  .box {
+    width: 70%;
+    margin-top: 10vh;
+  }
+}
+
+@media (max-width: 32.5em) {
+  .box {
+    width: 90%;
+    margin-top: 10vh;
+  }
+}
+
+@media (max-width: 26.5em) {
+  .box {
+    width: 98%;
+    margin-top: 10vh;
+  }
+}
