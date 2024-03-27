@@ -1,0 +1,18 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.btn {
+  margin-top: 2rem;
+}
+
+.orderStatus {
+  margin-top: 2rem;
+  border-style: ridge;
+  padding: 1rem;
+  padding-left: 15%;
+  padding-right: 15%;
+}

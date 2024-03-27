@@ -19,6 +19,12 @@
   margin-top: 2rem;
 }
 
+.loginFailed {
+  color: red;
+  font-size: medium;
+  text-align: center;
+}
+
 .link1 {
   text-decoration: none;
 }

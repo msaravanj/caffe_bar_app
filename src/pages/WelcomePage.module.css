@@ -33,9 +33,25 @@
   justify-content: center;
 }
 
+.btnOrder {
+  font-family: "Arial, Helvetica, sans-serif";
+  font-weight: bold;
+  color: white;
+}
+
+.btnLogin {
+  font-family: "Arial, Helvetica, sans-serif";
+  color: black;
+}
+
 .link {
   text-decoration: none;
   color: #000;
+}
+
+.link1 {
+  text-decoration: none;
+  color: white;
 }
 
 .img {

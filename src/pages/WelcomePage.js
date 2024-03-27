@@ -3,8 +3,14 @@ import Container from "react-bootstrap/Container";
 import CoffeeImg from "../assets/CoffeeImg.jpg";
 import classes from "./WelcomePage.module.css";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { userDataActions } from "../store";
 
 const WelcomePage = () => {
+  const dispatch = useDispatch();
+  const roleUser = useSelector((state) => state.role);
+  const role = 0;
+
   return (
     <Container className={classes.container}>
       <Row className={classes.row}>
@@ -15,29 +21,38 @@ const WelcomePage = () => {
       </Row>
       <Row className={classes.row}>
         <div className={classes.btns}>
-          <Button
-            style={{
-              "font-family": "Arial, Helvetica, sans-serif",
-              "font-weight": "bold",
-              color: "white",
-            }}
-            variant="warning"
-            size="lg"
-          >
-            NARUČI PIĆE
-          </Button>
-          <Button
-            style={{
-              "font-family": "Arial, Helvetica, sans-serif",
-              color: "black",
-            }}
-            variant="light"
-            size="lg"
-          >
-            <Link className={classes.link} to="/login">
-              Prijavi se
+          <Button className={classes.btnOrder} variant="warning" size="lg">
+            <Link className={classes.link1} to="/order">
+              NARUČI PIĆE
             </Link>
           </Button>
+          {roleUser === 0 ? (
+            <Button className={classes.btnLogin} variant="light" size="lg">
+              <Link className={classes.link} to="/login">
+                Prijavi se
+              </Link>
+            </Button>
+          ) : (
+            <Button
+              className={classes.btnLogin}
+              variant="light"
+              size="lg"
+              onClick={() => {
+                dispatch(
+                  userDataActions.updateUserData({
+                    id: null,
+                    role: 0,
+                    name: null,
+                    email: null,
+                    lastname: null,
+                    password: null,
+                  })
+                );
+              }}
+            >
+              Odjavi se
+            </Button>
+          )}
         </div>
       </Row>
     </Container>
