@@ -1,0 +1,42 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  border-style: groove;
+  border-radius: 0.5rem;
+  justify-content: center;
+  width: 30%;
+  margin: auto;
+  padding: 3rem;
+  margin-top: 10vh;
+}
+
+.link1 {
+  text-decoration: none;
+  margin-bottom: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.heading2 {
+  margin-bottom: 1.7rem;
+}
+
+.createBtn {
+  margin-top: 2rem;
+}
+
+.createError {
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.createSuccess {
+  text-align: center;
+  color: green;
+  margin-top: 0.5rem;
+}

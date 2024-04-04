@@ -4,7 +4,7 @@ import classes from "./NotFoundPage.module.css";
 const NotFoundPage = () => {
   return (
     <div className={classes.layout}>
-      <h2>Stranica ne postoji!</h2>
+      <h2>Stranica nije pronađena</h2>
       <Link className={classes.link} to="/">
         Idi na početnu stranicu
       </Link>

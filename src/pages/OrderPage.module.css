@@ -12,6 +12,8 @@
 .orderStatus {
   margin-top: 2rem;
   border-style: ridge;
+  border-left: none;
+  border-right: none;
   padding: 1rem;
   padding-left: 15%;
   padding-right: 15%;

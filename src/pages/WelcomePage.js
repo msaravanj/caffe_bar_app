@@ -9,7 +9,6 @@ import { userDataActions } from "../store";
 const WelcomePage = () => {
   const dispatch = useDispatch();
   const roleUser = useSelector((state) => state.role);
-  const role = 0;
 
   return (
     <Container className={classes.container}>
@@ -21,11 +20,20 @@ const WelcomePage = () => {
       </Row>
       <Row className={classes.row}>
         <div className={classes.btns}>
-          <Button className={classes.btnOrder} variant="warning" size="lg">
-            <Link className={classes.link1} to="/order">
-              NARUČI PIĆE
-            </Link>
-          </Button>
+          {roleUser === 0 && (
+            <Button className={classes.btnOrder} variant="warning" size="lg">
+              <Link className={classes.link1} to="/order">
+                NARUČI PIĆE
+              </Link>
+            </Button>
+          )}
+          {roleUser === 2 && (
+            <Button className={classes.btnOrder} variant="warning" size="lg">
+              <Link className={classes.link1} to="/dashboard">
+                NADZORNA PLOČA
+              </Link>
+            </Button>
+          )}
           {roleUser === 0 ? (
             <Button className={classes.btnLogin} variant="light" size="lg">
               <Link className={classes.link} to="/login">

@@ -2,6 +2,7 @@ import { Button } from "react-bootstrap";
 import DrinkComp from "../components/DrinkComp";
 import classes from "./OrderPage.module.css";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const OrderPage = () => {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -34,7 +35,7 @@ const OrderPage = () => {
         {orderedDrinks.forEach((drink) => {
           return <p>{drink}</p>;
         })}
-        <p>TOTAL PRICE: {totalPrice.toFixed(2)}</p>
+        <p>TOTAL PRICE: {totalPrice.toFixed(2)} €</p>
       </div>
       <Button className={classes.btn} variant="success" size="lg">
         NARUČI
