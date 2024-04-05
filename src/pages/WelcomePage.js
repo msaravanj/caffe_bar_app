@@ -5,10 +5,80 @@ import classes from "./WelcomePage.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userDataActions } from "../store";
+import Form from "react-bootstrap/Form";
+import { useState } from "react";
 
 const WelcomePage = () => {
   const dispatch = useDispatch();
   const roleUser = useSelector((state) => state.role);
+  const [emailSubscribe, setEmailSubscribe] = useState("");
+  const [isEmailInvalid, setIsEmailInvalid] = useState(false);
+  const [isSubscriptionSuccess, setIsSubscriptionSuccess] = useState(false);
+  const [emailExists, setEmailExists] = useState(false);
+
+  const urlAddSubscriber = "http://localhost:8080/mailinList/save";
+  const optionsAddSubscriber = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: emailSubscribe,
+    }),
+  };
+
+  const urlGetAllSubcribers = "http://localhost:8080/mailinList/all";
+  const optionsGetAllSubscribers = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const getAllSubscribersAndCheck = async () => {
+    const response = await fetch(urlGetAllSubcribers, optionsGetAllSubscribers);
+    const data = await response.json();
+    let count = 0;
+    let flag = false;
+    await data.forEach((subscriber) => {
+      if (subscriber.email === emailSubscribe) {
+        count++;
+      }
+    });
+
+    if (count === 0) {
+      flag = true;
+      setEmailExists(false);
+    } else {
+      flag = false;
+      setEmailExists(true);
+    }
+
+    return flag;
+  };
+
+  const validateEmail = () => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailSubscribe)) {
+      setIsEmailInvalid(false);
+      return true;
+    } else {
+      setIsEmailInvalid(true);
+      return false;
+    }
+  };
+
+  const subcribeUser = async () => {
+    if (validateEmail() === true) {
+      if ((await getAllSubscribersAndCheck()) === true) {
+        const response = await fetch(urlAddSubscriber, optionsAddSubscriber);
+        if (response.ok) {
+          setIsSubscriptionSuccess(true);
+        } else {
+          setIsSubscriptionSuccess(false);
+        }
+      } else {
+        setIsSubscriptionSuccess(false);
+      }
+    }
+  };
 
   return (
     <Container className={classes.container}>
@@ -63,6 +133,47 @@ const WelcomePage = () => {
           )}
         </div>
       </Row>
+      {roleUser === 0 && (
+        <div className={classes.newsletterBox}>
+          <p>Preplati se na naš newsletter:</p>
+          <div className={classes.newsletter}>
+            <Form>
+              <Form.Control
+                type="email"
+                placeholder="Unesi email"
+                onChange={(e) => {
+                  setEmailSubscribe(e.target.value);
+                  setIsEmailInvalid(false);
+                  setIsSubscriptionSuccess(false);
+                  setEmailExists(false);
+                }}
+              />
+            </Form>
+            <Button
+              onClick={() => {
+                subcribeUser();
+              }}
+            >
+              Pretplati se
+            </Button>
+          </div>
+          {isEmailInvalid && (
+            <p className={classes.invalidEmail}>
+              Unesena email adresa je neispravna!
+            </p>
+          )}
+          {emailExists === true && (
+            <p className={classes.invalidEmail}>
+              Email adresa se već nalazi na listi pretplaćenih.
+            </p>
+          )}
+          {isSubscriptionSuccess && (
+            <p className={classes.successSubcription}>
+              Uspješno ste se pretplatili!
+            </p>
+          )}
+        </div>
+      )}
     </Container>
   );
 };
