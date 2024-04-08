@@ -79,7 +79,7 @@ const OrderPage = () => {
     body: JSON.stringify({
       issueTimeOfOrder: getTimeNow(),
       orderStatus: 0,
-      tableNumber: 5,
+      tableNumber: Math.floor(Math.random() * 20) + 1,
     }),
   };
 

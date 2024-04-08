@@ -2,6 +2,32 @@ import { Link } from "react-router-dom";
 import classes from "./DashboardPage.module.css";
 
 const DashboardPage = () => {
+  const urlGeneratePdf = "http://localhost:8080/statistic/generatePdf";
+  const optionsGeneratePdf = {
+    method: "GET",
+    // headers: {
+    //   "Content-Type": "application/pdf",
+    // },
+  };
+
+  const generateStatisticPdf = async () => {
+    const response = await fetch(urlGeneratePdf, optionsGeneratePdf);
+    const blob = await response.blob();
+    const newBlob = new Blob([blob]);
+
+    const blobUrl = window.URL.createObjectURL(newBlob);
+
+    const link = document.createElement("a");
+    link.href = blobUrl;
+    link.setAttribute("download", `daily_orderStatistics.pdf`);
+    document.body.appendChild(link);
+    link.click();
+    link.parentNode.removeChild(link);
+
+    window.URL.revokeObjectURL(blobUrl);
+    console.log(response);
+  };
+
   return (
     <div className={classes.page}>
       <Link className={classes.linkBack} to="/">
@@ -17,7 +43,14 @@ const DashboardPage = () => {
           Unos novog artikla
         </Link>
         <Link className={classes.option}>Upravljanje posebnim ponudama</Link>
-        <Link className={classes.option}>Pregled statistike</Link>
+        <Link
+          className={classes.option}
+          onClick={() => {
+            generateStatisticPdf();
+          }}
+        >
+          Generiraj dnevnu statistiku
+        </Link>
       </div>
     </div>
   );
