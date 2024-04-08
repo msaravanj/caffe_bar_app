@@ -7,14 +7,36 @@
 
 .btn {
   margin-top: 2rem;
+  margin-bottom: 5rem;
 }
 
 .orderStatus {
   margin-top: 2rem;
   border-style: ridge;
-  border-left: none;
-  border-right: none;
+  border-radius: 0.5rem;
   padding: 1rem;
   padding-left: 15%;
   padding-right: 15%;
+}
+
+.heading2 {
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.totalPrice {
+  margin-top: 1.5rem;
+  font-weight: bold;
+}
+
+.orderedItem {
+  margin-bottom: 0;
+}
+
+.errorText {
+  color: red;
+}
+
+.successText {
+  color: green;
 }
