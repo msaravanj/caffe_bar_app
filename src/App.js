@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import RegisterPage from "./pages/admin/RegisterPage";
 import DashboardPage from "./pages/admin/DashboardPage";
 import CreateNewArticlePage from "./pages/admin/CreateNewArticlePage";
+import CreateSpecialOfferPage from "./pages/admin/CreateSpecialOfferPage";
 
 function App() {
   const roleUser = useSelector((state) => state.role);
@@ -38,6 +39,12 @@ function App() {
             <Route
               path="/addArticle"
               element={<CreateNewArticlePage />}
+            ></Route>
+          )}
+          {roleUser === 2 && (
+            <Route
+              path="/addSpecialOffer"
+              element={<CreateSpecialOfferPage />}
             ></Route>
           )}
           <Route path="*" element={<NotFoundPage />}></Route>

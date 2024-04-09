@@ -1,12 +1,11 @@
-import { Row, Image, Button } from "react-bootstrap";
+import { Row, Image, Button, Form, Tab, Tabs } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import CoffeeImg from "../assets/CoffeeImg.jpg";
 import classes from "./WelcomePage.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userDataActions } from "../store";
-import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const WelcomePage = () => {
   const dispatch = useDispatch();
@@ -15,6 +14,57 @@ const WelcomePage = () => {
   const [isEmailInvalid, setIsEmailInvalid] = useState(false);
   const [isSubscriptionSuccess, setIsSubscriptionSuccess] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
+  const [specialOffers, setSpecialOffers] = useState([]);
+
+  const days = [
+    "nedjelje",
+    "ponedjeljka",
+    "utorka",
+    "srijede",
+    "četvrtka",
+    "petka",
+    "subote",
+  ];
+
+  const urlGetOffers = "http://localhost:8080/specialOffer/all";
+  const optionsGetOffers = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const getAllSpecialOffers = async () => {
+    const response = await fetch(urlGetOffers, optionsGetOffers);
+    if (!response.ok) {
+      setSpecialOffers([]);
+    } else {
+      const data = await response.json();
+      console.log(data);
+      data.sort((a, b) => {
+        return (
+          new Date(a.validFrom).getTime() - new Date(b.validFrom).getTime()
+        );
+      });
+      setSpecialOffers(data);
+    }
+  };
+
+  useEffect(() => {
+    getAllSpecialOffers();
+  }, []);
+
+  const compareDates = (d1) => {
+    let date1 = new Date(d1).getTime();
+    let date2 = new Date().getTime();
+
+    if (date1 < date2) {
+      return 0;
+    } else if (date1 > date2) {
+      return 2;
+    } else {
+      return 1;
+    }
+  };
 
   const urlAddSubscriber = "http://localhost:8080/mailinList/save";
   const optionsAddSubscriber = {
@@ -174,6 +224,70 @@ const WelcomePage = () => {
           )}
         </div>
       )}
+      <div className={classes.specialOffers}>
+        <h2>Naše posebne ponude</h2>
+        <Tabs defaultActiveKey="active" id="offer-tab" className="mb-3" fill>
+          <Tab eventKey="active" title="Aktivne ponude">
+            {specialOffers.map((offer) => {
+              if (
+                (compareDates(offer.validFrom) === 1 ||
+                  compareDates(offer.validFrom) === 0) &&
+                (compareDates(offer.validTo) === 1 ||
+                  compareDates(offer.validTo) === 2)
+              ) {
+                return (
+                  <div className={classes.specOffer} key={offer.id}>
+                    <h3>{offer.name}</h3>
+                    <p>{offer.description}</p>
+                    <p>
+                      Od {offer.validFrom} do {offer.validTo}
+                    </p>
+                  </div>
+                );
+              }
+            })}
+          </Tab>
+          <Tab eventKey="future" title="Buduće ponude">
+            {specialOffers.map((offer) => {
+              if (compareDates(offer.validFrom) === 2) {
+                return (
+                  <div className={classes.tab}>
+                    <div className={classes.specOffer} key={offer.id}>
+                      <h3>{offer.name}</h3>
+                      <p>{offer.description}</p>
+                      <p>
+                        Ponuda vrijedi od{" "}
+                        {days[new Date(offer.validFrom).getDay()]} (
+                        {offer.validFrom}) do{" "}
+                        {days[new Date(offer.validTo).getDay()]} (
+                        {offer.validTo}
+                        ).
+                      </p>
+                    </div>
+                  </div>
+                );
+              }
+            })}
+          </Tab>
+          <Tab eventKey="archive" title="Arhiva ponuda">
+            {specialOffers.map((offer) => {
+              if (compareDates(offer.validTo) === 0) {
+                return (
+                  <div className={classes.tab}>
+                    <div className={classes.specOffer} key={offer.id}>
+                      <h3>{offer.name}</h3>
+                      <p>{offer.description}</p>
+                      <p>
+                        Od {offer.validFrom} do {offer.validTo}
+                      </p>
+                    </div>
+                  </div>
+                );
+              }
+            })}
+          </Tab>
+        </Tabs>
+      </div>
     </Container>
   );
 };

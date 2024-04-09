@@ -1,31 +1,39 @@
 import { Link } from "react-router-dom";
 import classes from "./DashboardPage.module.css";
+import { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
 
 const DashboardPage = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const urlGeneratePdf = "http://localhost:8080/statistic/generatePdf";
   const optionsGeneratePdf = {
     method: "GET",
-    // headers: {
-    //   "Content-Type": "application/pdf",
-    // },
   };
 
   const generateStatisticPdf = async () => {
     const response = await fetch(urlGeneratePdf, optionsGeneratePdf);
-    const blob = await response.blob();
-    const newBlob = new Blob([blob]);
+    if (!response.ok) {
+      handleShow();
+    } else {
+      const blob = await response.blob();
+      const newBlob = new Blob([blob]);
 
-    const blobUrl = window.URL.createObjectURL(newBlob);
+      const blobUrl = window.URL.createObjectURL(newBlob);
 
-    const link = document.createElement("a");
-    link.href = blobUrl;
-    link.setAttribute("download", `daily_orderStatistics.pdf`);
-    document.body.appendChild(link);
-    link.click();
-    link.parentNode.removeChild(link);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.setAttribute("download", `order_statistics.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
 
-    window.URL.revokeObjectURL(blobUrl);
-    console.log(response);
+      window.URL.revokeObjectURL(blobUrl);
+      console.log(response);
+    }
   };
 
   return (
@@ -42,16 +50,36 @@ const DashboardPage = () => {
         <Link className={classes.option} to="/addArticle">
           Unos novog artikla
         </Link>
-        <Link className={classes.option}>Upravljanje posebnim ponudama</Link>
+        <Link className={classes.option} to="/addSpecialOffer">
+          Upravljanje posebnim ponudama
+        </Link>
         <Link
           className={classes.option}
           onClick={() => {
             generateStatisticPdf();
           }}
         >
-          Generiraj dnevnu statistiku
+          Generiraj statistiku narudžbi [PDF]
         </Link>
       </div>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Neuspješno generiranje dokumenta</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          PDF dokument nije uspješno generiran. Pokušajte ponovno.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Zatvori
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

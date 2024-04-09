@@ -1,0 +1,41 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  border-style: groove;
+  border-radius: 0.5rem;
+  justify-content: center;
+  width: 30%;
+  margin: auto;
+  padding: 3rem;
+  margin-top: 10vh;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.link1 {
+  text-decoration: none;
+  margin-bottom: 2rem;
+}
+
+.heading2 {
+  margin-bottom: 1.7rem;
+}
+
+.datePicker {
+  margin-left: 0.5rem;
+  border-radius: 0.4rem;
+}
+
+.createBtn {
+  margin-top: 2rem;
+}
+
+.createError {
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
+}
