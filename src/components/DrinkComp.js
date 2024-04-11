@@ -8,7 +8,7 @@ const DrinkComp = (props) => {
   return (
     <div className={classes.drink}>
       <h4 className={classes.first}>{props.name}</h4>
-      <h4 className={classes.third}>{props.price} €</h4>
+      <h4 className={classes.third}>{props.price.toFixed(2)} €</h4>
       <div className={classes.fourth}>
         <Button
           variant="outline-dark"

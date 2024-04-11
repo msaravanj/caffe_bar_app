@@ -11,6 +11,8 @@ import RegisterPage from "./pages/admin/RegisterPage";
 import DashboardPage from "./pages/admin/DashboardPage";
 import CreateNewArticlePage from "./pages/admin/CreateNewArticlePage";
 import CreateSpecialOfferPage from "./pages/admin/CreateSpecialOfferPage";
+import OrderManagementPage from "./pages/employee/OrderManagementPage";
+import UpdateArticlePage from "./pages/admin/UpdateArticlePage";
 
 function App() {
   const roleUser = useSelector((state) => state.role);
@@ -45,6 +47,18 @@ function App() {
             <Route
               path="/addSpecialOffer"
               element={<CreateSpecialOfferPage />}
+            ></Route>
+          )}
+          {(roleUser === 1 || roleUser === 2) && (
+            <Route
+              path="/orderManagement"
+              element={<OrderManagementPage />}
+            ></Route>
+          )}
+          {roleUser === 2 && (
+            <Route
+              path="/updateArticles"
+              element={<UpdateArticlePage />}
             ></Route>
           )}
           <Route path="*" element={<NotFoundPage />}></Route>

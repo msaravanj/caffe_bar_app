@@ -1,7 +1,8 @@
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import DrinkComp from "../components/DrinkComp";
 import classes from "./OrderPage.module.css";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import OrderCreatedModal from "../components/OrderCreatedModal";
 
 const OrderPage = () => {
@@ -97,6 +98,9 @@ const OrderPage = () => {
 
   return (
     <div className={classes.layout}>
+      <Link className={classes.link1} to="/">
+        <i className="fa fa-angle-left"></i> Početna stranica
+      </Link>
       <h2 className={classes.heading2}>Pivo</h2>
       {articles.map((article) => {
         if (article.description === "Pivo") {

@@ -40,3 +40,9 @@
 .successText {
   color: green;
 }
+
+.link1 {
+  text-decoration: none;
+  align-self: first baseline;
+  margin-left: 15rem;
+}

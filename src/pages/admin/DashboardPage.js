@@ -24,9 +24,15 @@ const DashboardPage = () => {
 
       const blobUrl = window.URL.createObjectURL(newBlob);
 
+      const date = new Date();
       const link = document.createElement("a");
       link.href = blobUrl;
-      link.setAttribute("download", `order_statistics.pdf`);
+      link.setAttribute(
+        "download",
+        `order_statistics_${date.getDate()}-${
+          date.getMonth() + 1
+        }-${date.getFullYear()}.pdf`
+      );
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
@@ -46,9 +52,14 @@ const DashboardPage = () => {
         <Link className={classes.option} to="/register">
           Unos novog djelatnika
         </Link>
-        <Link className={classes.option}>Upravljanje narudžbama</Link>
+        <Link className={classes.option} to="/orderManagement">
+          Upravljanje narudžbama
+        </Link>
         <Link className={classes.option} to="/addArticle">
           Unos novog artikla
+        </Link>
+        <Link className={classes.option} to="/updateArticles">
+          Ažuriranje artikala
         </Link>
         <Link className={classes.option} to="/addSpecialOffer">
           Upravljanje posebnim ponudama

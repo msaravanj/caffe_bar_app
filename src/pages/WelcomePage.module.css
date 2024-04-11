@@ -112,6 +112,14 @@
   padding: 1rem;
   border-style: ridge;
   border-radius: 0.5rem;
+  width: 50rem;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  background-color: beige;
+}
+
+.offerTitle {
+  margin-bottom: 2rem;
 }
 
 @media (max-width: 48.2em) {
