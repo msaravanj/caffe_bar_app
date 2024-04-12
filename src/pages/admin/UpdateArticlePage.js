@@ -189,7 +189,7 @@ const UpdateArticlePage = () => {
                 setIsError(false);
               }}
             >
-              Odustani
+              Zatvori
             </Button>
           </Modal.Footer>
         </Modal>

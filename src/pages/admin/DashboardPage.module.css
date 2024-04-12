@@ -39,3 +39,15 @@
   margin-left: 5rem;
   margin-top: 5rem;
 }
+
+@media (max-width: 35em) {
+  .linkBack {
+    margin-left: 0.6rem;
+  }
+}
+
+@media (max-width: 29em) {
+  .option {
+    width: 98vw;
+  }
+}

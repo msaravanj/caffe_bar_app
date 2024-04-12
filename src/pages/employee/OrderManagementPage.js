@@ -107,7 +107,12 @@ const OrderManagementPage = () => {
         </Modal.Footer>
       </Modal>
       <div className={classes.layout}>
-        <Tabs defaultActiveKey="inProgress" id="orders-tab" fill>
+        <Tabs
+          className={classes.tabs1}
+          defaultActiveKey="inProgress"
+          id="orders-tab"
+          fill
+        >
           <Tab
             eventKey="inProgress"
             title="Aktivne narudžbe"

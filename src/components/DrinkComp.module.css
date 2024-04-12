@@ -36,3 +36,33 @@
   padding-left: 1rem;
   width: 3rem;
 }
+
+@media (max-width: 69em) {
+  .drink {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 53.2em) {
+  .drink {
+    width: 95vw;
+  }
+}
+
+@media (max-width: 32em) {
+  .first {
+    font-size: 1rem;
+  }
+  .third {
+    font-size: 1rem;
+  }
+  .heading4 {
+    font-size: 1rem;
+  }
+
+  .number {
+    padding-right: 0.5rem;
+    padding-left: 0.7rem;
+    width: 2rem;
+  }
+}

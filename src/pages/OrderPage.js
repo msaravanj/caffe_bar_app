@@ -227,7 +227,7 @@ const OrderPage = () => {
         show={modalShow}
         onHide={() => {
           setModalShow(false);
-          window.location.reload();
+          document.location.reload();
         }}
       />
       <Button

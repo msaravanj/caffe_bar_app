@@ -227,7 +227,12 @@ const WelcomePage = () => {
       )}
       <div className={classes.specialOffers}>
         <h2>Naše posebne ponude</h2>
-        <Tabs defaultActiveKey="active" id="offer-tab" className="mb-3" fill>
+        <Tabs
+          className={classes.tabs}
+          defaultActiveKey="active"
+          id="offer-tab"
+          fill
+        >
           <Tab eventKey="active" title="Aktivne ponude">
             {specialOffers.map((offer) => {
               if (

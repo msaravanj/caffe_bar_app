@@ -39,3 +39,27 @@
   text-align: center;
   margin-top: 1rem;
 }
+
+@media (max-width: 90.5em) {
+  .box {
+    width: 40vw;
+  }
+}
+
+@media (max-width: 65.7em) {
+  .box {
+    width: 55vw;
+  }
+}
+
+@media (max-width: 47em) {
+  .box {
+    width: 70vw;
+  }
+}
+
+@media (max-width: 37.5em) {
+  .box {
+    width: 98vw;
+  }
+}

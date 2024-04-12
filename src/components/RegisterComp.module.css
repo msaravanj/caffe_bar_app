@@ -46,3 +46,33 @@
   color: green;
   margin-top: 0.5rem;
 }
+
+@media (max-width: 80em) {
+  .box {
+    width: 40vw;
+  }
+}
+
+@media (max-width: 62.5em) {
+  .box {
+    width: 50vw;
+  }
+}
+
+@media (max-width: 50em) {
+  .box {
+    width: 60vw;
+  }
+}
+
+@media (max-width: 38em) {
+  .box {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 31em) {
+  .box {
+    width: 98vw;
+  }
+}

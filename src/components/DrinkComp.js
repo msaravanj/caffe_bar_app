@@ -36,7 +36,7 @@ const DrinkComp = (props) => {
           <i className="fa-solid fa-minus"></i>
         </Button>
         <div className={classes.number}>
-          <h4>{count}</h4>
+          <h4 className={classes.heading4}>{count}</h4>
         </div>
         <Button
           variant="outline-dark"

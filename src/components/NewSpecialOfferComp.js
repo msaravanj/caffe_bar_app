@@ -26,6 +26,8 @@ const NewSpecialOfferComp = () => {
     }),
   };
 
+  const sendEmail = () => {};
+
   const createSpecialOffer = async () => {
     const response = await fetch(urlCreateOffer, optionsCreateOffer);
     if (!response.ok) {

@@ -40,3 +40,21 @@
   color: green;
   margin-top: 0.5rem;
 }
+
+@media (max-width: 79.1em) {
+  .box {
+    width: 45vw;
+  }
+}
+
+@media (max-width: 48.2em) {
+  .box {
+    width: 60vw;
+  }
+}
+
+@media (max-width: 34.5em) {
+  .box {
+    width: 98vw;
+  }
+}

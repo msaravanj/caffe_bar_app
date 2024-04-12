@@ -46,3 +46,9 @@
   align-self: first baseline;
   margin-left: 15rem;
 }
+
+@media (max-width: 69em) {
+  .link1 {
+    margin-left: 2rem;
+  }
+}

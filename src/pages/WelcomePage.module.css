@@ -130,6 +130,14 @@
   .container .row h1 {
     font-size: 2rem;
   }
+
+  .tabs {
+    width: 100vw;
+  }
+
+  .tab {
+    width: 95vw;
+  }
 }
 
 @media (max-width: 36em) {
@@ -157,6 +165,15 @@
 
   .btns {
     flex-direction: column;
+  }
+  .newsletter {
+    flex-direction: column;
+  }
+
+  .tabs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 }
 
