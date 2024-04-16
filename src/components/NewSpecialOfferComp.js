@@ -89,7 +89,7 @@ const NewSpecialOfferComp = () => {
           <DatePicker
             className={classes.datePicker}
             selected={fromDate}
-            minDate={fromDate}
+            minDate={new Date()}
             onChange={(date) => {
               setFromDate(date);
               setIsError(false);
@@ -101,7 +101,7 @@ const NewSpecialOfferComp = () => {
           <DatePicker
             className={classes.datePicker}
             selected={toDate}
-            minDate={fromDate}
+            minDate={new Date()}
             onChange={(date) => {
               setToDate(date);
               setIsError(false);
@@ -114,7 +114,12 @@ const NewSpecialOfferComp = () => {
         className={classes.createBtn}
         size="lg"
         variant="success"
-        disabled={name === "" || description === "" || price === 0}
+        disabled={
+          name === "" ||
+          description === "" ||
+          price === 0 ||
+          fromDate.getTime() > toDate.getTime()
+        }
         onClick={() => {
           createSpecialOffer();
         }}
